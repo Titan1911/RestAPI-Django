@@ -1,0 +1,27 @@
+[
+  {
+    "account_no": 2900,
+    "isActive": true,
+    "balance": "$1,117.23"
+  },
+  {
+    "account_no": 6726,
+    "isActive": true,
+    "balance": "$2,939.22"
+  },
+  {
+    "account_no": 5590,
+    "isActive": false,
+    "balance": "$1,260.28"
+  },
+  {
+    "account_no": 2687,
+    "isActive": true,
+    "balance": "$3,061.57"
+  },
+  {
+    "account_no": 8003,
+    "isActive": true,
+    "balance": "$1,619.44"
+  }
+]
