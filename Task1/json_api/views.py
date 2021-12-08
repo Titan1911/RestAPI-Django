@@ -72,16 +72,15 @@ class accountListAPIView(ListAPIView):
 
 class accountUpdateAPIView(UpdateAPIView):
     serializer_class=AccountSerializer
-    queryset = Account.objects.all()
 
 class accountCreateAPIView(CreateAPIView):
     serializer_class=AccountSerializer
-    queryset = Account.objects.all()
 
 class accountDeleteAPIView(DestroyAPIView):
     serializer_class=AccountSerializer
-    queryset = Account.objects.all()
+    queryset=Account.objects.all()
+    lookup_field = 'pk'
 
 class accountRetrieveAPIView(RetrieveAPIView):
     serializer_class=AccountSerializer
-    queryset = Account.objects.all()
+    queryset=Account.objects.all()

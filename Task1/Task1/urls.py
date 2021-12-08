@@ -23,7 +23,7 @@ urlpatterns = [
     path('account-api', views.accountApi),
     path('account-list',views.accountListAPIView.as_view()),
     path('account-create',views.accountCreateAPIView.as_view()),
-    path('account-delete/<str:pk>',views.accountDeleteAPIView.as_view()),
-    path('account-detail/<str:pk>',views.accountRetrieveAPIView.as_view()),
-    path('account-update/<str:pk>',views.accountUpdateAPIView.as_view()),
+    path('account-delete/<int:pk>',views.accountDeleteAPIView.as_view()),
+    path('account-detail/<int:pk>',views.accountRetrieveAPIView.as_view()),
+    path('account-update/<int:pk>',views.accountUpdateAPIView.as_view()),
 ]
