@@ -40,12 +40,18 @@ def accountApi(request):
     }
     return Response(api_urls)
 
+
+class ProductPagination(LimitOffsetPagination):
+    default_limit = 10
+    max_limit = 100
+
 class accountListAPIView(ListAPIView):
     serializer_class = AccountSerializer
     queryset=Account.objects.all()
     filter_backends = (DjangoFilterBackend, SearchFilter)
     filter_fields = ('id','isActive',)
     search_fields = ('account_no',)
+    pagination_class = ProductPagination
 
 class accountUpdateAPIView(UpdateAPIView):
     serializer_class=AccountSerializer
@@ -62,9 +68,6 @@ class accountRetrieveAPIView(RetrieveAPIView):
     serializer_class=AccountSerializer
     queryset=Account.objects.all()
 
-class ProductPagination(LimitOffsetPagination):
-    default_limit = 10
-    max_limit = 100
 
 # @api_view(['GET'])
 # def accountList(request):
