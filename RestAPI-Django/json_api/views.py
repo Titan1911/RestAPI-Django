@@ -5,6 +5,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, DestroyAPIView, UpdateAPIView, ListAPIView, RetrieveAPIView
 from .serializers import AccountSerializer
+from rest_framework.pagination import LimitOffsetPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
 # Create your views here.
 def account(request):
@@ -37,6 +40,32 @@ def accountApi(request):
     }
     return Response(api_urls)
 
+class accountListAPIView(ListAPIView):
+    serializer_class = AccountSerializer
+    queryset=Account.objects.all()
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filter_fields = ('id','isActive',)
+    search_fields = ('account_no',)
+
+class accountUpdateAPIView(UpdateAPIView):
+    serializer_class=AccountSerializer
+
+class accountCreateAPIView(CreateAPIView):
+    serializer_class=AccountSerializer
+
+class accountDeleteAPIView(DestroyAPIView):
+    serializer_class=AccountSerializer
+    queryset=Account.objects.all()
+    lookup_field = 'pk'
+
+class accountRetrieveAPIView(RetrieveAPIView):
+    serializer_class=AccountSerializer
+    queryset=Account.objects.all()
+
+class ProductPagination(LimitOffsetPagination):
+    default_limit = 10
+    max_limit = 100
+
 # @api_view(['GET'])
 # def accountList(request):
 #     account=Account.objects.all()
@@ -66,21 +95,3 @@ def accountApi(request):
 #     return Response(f"Item with id:{pk} successfully Deleted")
 #
 
-class accountListAPIView(ListAPIView):
-    serializer_class = AccountSerializer
-    queryset=Account.objects.all()
-
-class accountUpdateAPIView(UpdateAPIView):
-    serializer_class=AccountSerializer
-
-class accountCreateAPIView(CreateAPIView):
-    serializer_class=AccountSerializer
-
-class accountDeleteAPIView(DestroyAPIView):
-    serializer_class=AccountSerializer
-    queryset=Account.objects.all()
-    lookup_field = 'pk'
-
-class accountRetrieveAPIView(RetrieveAPIView):
-    serializer_class=AccountSerializer
-    queryset=Account.objects.all()
